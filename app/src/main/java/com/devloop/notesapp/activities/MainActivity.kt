@@ -1,7 +1,8 @@
-package com.devloop.notesapp
+package com.devloop.notesapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.devloop.notesapp.R
 
 class MainActivity : AppCompatActivity() {
 

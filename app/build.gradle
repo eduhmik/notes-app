@@ -45,4 +45,13 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     kapt "android.arch.lifecycle:compiler:$lifecycle_version"
+
+    // DI Koin components
+    implementation 'org.koin:koin-android:2.0.1'
+    implementation 'org.koin:koin-android-viewmodel:2.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //cardview
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation "android.arch.lifecycle:extensions:1.1.1"
 }
