@@ -1,31 +1,27 @@
-import android.app.Application
+package com.devloop.notesapp.repository
+
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import com.devloop.notesapp.Database.dao.NoteDao
+import com.devloop.notesapp.Database.entities.Note
 
 // This is a class to check whether to fetch data from API or local database
 
-class NoteRepository(application: Application) {
-    private var noteDao: NoteDao
-
-    private var allNotes: LiveData<List<Note>>
+class NoteRepository(private val noteDao: NoteDao) {
+    private val allNotes: LiveData<List<Note>> = noteDao.getAllNotes()
 
     // wrapper for insert() and getAllNotes() and deleteAllNotes()
 
-    init {
-        val database: NoteDatabase = NoteDatabase.getInstance(
-            application.applicationContext
-        )!!
-        noteDao = database.noteDao()
-        allNotes = noteDao.getAllNotes()
-    }
-
-
     fun insert(note: Note) {
-        val insertNoteAsyncTask = InsertNoteAsyncTask(noteDao).execute(note)
+        InsertNoteAsyncTask(noteDao).execute(note)
     }
 
     fun deleteAllNotes() {
-        val deleteAllNotesAsyncTask = DeleteAllNotesAsyncTask(noteDao).execute()
+        DeleteAllNotesAsyncTask(noteDao).execute()
+    }
+
+    fun getAllNotes(): LiveData<List<Note>> {
+        return allNotes
     }
 
     private class InsertNoteAsyncTask(noteDao: NoteDao) : AsyncTask<Note, Unit, Unit>() {

@@ -1,9 +1,13 @@
+package com.devloop.notesapp.Database
+
 import android.content.Context
 import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.devloop.notesapp.Database.dao.NoteDao
+import com.devloop.notesapp.Database.entities.Note
 
 @Database(entities = [Note::class], version = 1)
 abstract class NoteDatabase : RoomDatabase() {
@@ -24,7 +28,7 @@ abstract class NoteDatabase : RoomDatabase() {
                         .build()
                 }
             }
-            return instance
+            return instance!!
         }
 
         fun destroyInstance() {
