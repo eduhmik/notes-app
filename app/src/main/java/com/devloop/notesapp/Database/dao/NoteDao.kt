@@ -9,7 +9,7 @@ import com.devloop.notesapp.Database.entities.Note
 @Dao
 interface NoteDao {
     @Insert
-    fun insert(note: Note)
+    fun insert(vararg note: Note)
 
     @Query("Delete FROM notes_table")
     fun deleteAllNotes()
