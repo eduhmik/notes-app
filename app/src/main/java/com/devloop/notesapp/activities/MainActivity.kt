@@ -2,19 +2,19 @@ package com.devloop.notesapp.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.devloop.notesapp.adapter.NoteAdapter
 import com.devloop.notesapp.Database.entities.Note
-import com.devloop.notesapp.viewmodel.NoteViewModel
 import com.devloop.notesapp.R
+import com.devloop.notesapp.adapter.NoteAdapter
+import com.devloop.notesapp.viewmodel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 data.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION)
             )
             noteViewModel.insert(newNote)
-
+            Log.d("this is a note", data!!.getStringExtra(AddNoteActivity.EXTRA_TITLE))
             Toast.makeText(this,"Note Saved!", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this,"Note not saved!", Toast.LENGTH_SHORT).show()

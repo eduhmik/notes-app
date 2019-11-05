@@ -20,7 +20,6 @@ val repositoryModule = module {
 }
 
 val uiModule = module {
-    // factory { NoteAdapater() }
     viewModel { NoteViewModel(get()) }
 }
 
