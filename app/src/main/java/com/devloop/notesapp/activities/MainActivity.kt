@@ -16,12 +16,14 @@ import com.devloop.notesapp.Database.entities.Note
 import com.devloop.notesapp.viewmodel.NoteViewModel
 import com.devloop.notesapp.R
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val ADD_NOTE_REQUEST = 1
-    private lateinit var noteViewModel : NoteViewModel
+    private val noteViewModel by viewModel<NoteViewModel>()
     private val adapter = NoteAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
         noteViewModel.getAllNotes().observe(this,
             Observer<List<Note>> { t -> adapter.setNotes(t!!) })
     }
